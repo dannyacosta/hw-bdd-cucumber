@@ -24,11 +24,11 @@ Background: movies have been added to database
 Scenario: restrict to movies with 'PG' or 'R' ratings
   When I check the following ratings: PG, R
   And I uncheck the following ratings: G, PG-13
-  And I click on submit
-  Then I should see movies with the following ratings: PG, R
-  And I should not see movies with the following ratings: G, PG-13
+  And I click on Refresh
+  Then I should see movies with the following movies: The Terminator, When Harry Met Sally, Amelie, The Incredibles, Raiders of the Lost Ark
+  And I should not see movies with the following movies: Aladdin, The Help, 2001: A Space Odyssey, Chicken Run
 
 Scenario: all ratings selected
   When I check the following ratings: G, PG, PG-13, R
-  And I click on submit
+  And I click on Refresh
   Then I should see all the movies

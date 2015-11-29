@@ -29,23 +29,24 @@ When /I uncheck the following ratings: (.*)/ do |rating_list|
 end
 
 When /I click on (.*)$/ do |button|
-  click_button("ratings_#{button}")
+  click_button(button)
 end
 
-Then /I should see movies with the following ratings: (.*)$/ do |rating_list|
+Then /I should see movies with the following movies: (.*)$/ do |rating_list|
   rating_list.split(',').each do |rating|
-    rating.gsub!(' ', '')
+    rating.strip
     within_table "movies" do
       expect(page).to have_content(rating)
     end
   end
 end
 
-Then /I should not see movies with the following ratings: (.*)$/ do |rating_list|
+Then /I should not see movies with the following movies: (.*)$/ do |rating_list|
+  #byebug
   rating_list.split(',').each do |rating|
-    rating.gsub!(' ', '')
+    rating.strip
     within_table "movies" do
-      expect(page).to have_no_content(rating)
+      expect(page.body).not_to have_content(rating)
     end
   end
 end
